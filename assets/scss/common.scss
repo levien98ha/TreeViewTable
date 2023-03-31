@@ -1,0 +1,223 @@
+$primary-color: #2e455c;
+$white-color: #ffffff;
+
+$bg-odd: #172129;
+$bg-even: #1a2733;
+
+// .tree-row {
+//   display: flex;
+// }
+
+// .tree-col {
+//   background-color: $bg-even;
+// }
+
+// .root-col:nth-child(odd) .tree-col:nth-child(odd) {
+//   background-color: $bg-odd;
+// }
+
+// .root-col:not(:nth-child(1)) > .tree-row:nth-child(odd) .tree-col {
+//   background-color: $bg-odd;
+// }
+
+// .tree-col {
+//   min-width: 200px;
+//   padding: 8px 10px;
+//   text-align: center;
+//   height: 35px;
+//   position: relative;
+//   box-sizing: border-box;
+//   color: $white-color;
+// }
+
+// .col-no-data {
+//   // &::before {
+//   //   content: '';
+//   //   border-right: 1px solid $primary-color;
+//   //   position: absolute;
+//   //   height: 100%;
+//   //   width: 1px;
+//   //   right: 0;
+//   //   top: 0;
+//   // }
+//   // &_last {
+//   //   content: '';
+//   //   border-right: 1px solid $white-color;
+//   //   position: absolute;
+//   //   height: 50%;
+//   //   width: 1px;
+//   //   right: 0;
+//   //   top: 50%;
+//   // }
+// }
+
+// .line-node {
+//   &::before {
+//     content: '';
+//     border-top: 1px solid $primary-color;
+//     position: absolute;
+//     height: 0px;
+//     width: 10px;
+//     left: 0px;
+//   }
+// }
+
+// .col-data {
+//   &-first {
+//     // &::before {
+//     //   content: '';
+//     //   border-bottom: 1px solid $primary-color;
+//     //   position: absolute;
+//     //   height: 0px;
+//     //   width: 10px;
+//     //   left: -10px;
+//     //   top: 50%;
+//     // }
+//     // &::after {
+//     //   content: '';
+//     //   border-right: 1px solid $primary-color;
+//     //   position: absolute;
+//     //   height: 100%;
+//     //   width: 0px;
+//     //   top: 50%;
+//     //   left: -1px;
+//     // }
+//   }
+//   &-last {
+//     // &::before {
+//     //   content: '';
+//     //   border-right: 1px solid $white-color;
+//     //   position: absolute;
+//     //   height: 100%;
+//     //   width: 0px;
+//     //   top: 50%;
+//     //   left: -1px;
+//     // }
+//   }
+// }
+
+// .flex-col {
+//   flex-direction: column;
+// }
+
+// .justify-center {
+//   justify-content: center;
+// }
+
+// .align-center {
+//   align-items: center;
+// }
+
+// .root-col:not(:nth-child(1)) {
+//   position: relative;
+//   &::before {
+//     content: '';
+//     border-right: 1px solid $primary-color;
+//     position: absolute;
+//     height: calc(100% - 34.5px);
+//     width: 0px;
+//     top: 17.5px;
+//     left: -1px;
+//   }
+//   .tree-col {
+//     .line-node {
+//       &::before {
+//         content: '';
+//         border-top: 1px solid $primary-color;
+//         position: absolute;
+//         height: 0px;
+//         width: 20px;
+//         left: -10px;
+//       }
+//     }
+//   }
+// }
+
+.tree-table {
+  overflow: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.row {
+  display: flex;
+  padding: 0 15px;
+  height: 35px;
+  box-sizing: border-box;
+  position: relative;
+  &:nth-child(even) {
+    background-color: $bg-even;
+  }
+  &:nth-child(odd) {
+    background-color: $bg-odd;
+  }
+}
+
+.col {
+  width: fit-content;
+  height: 35px;
+  box-sizing: border-box;
+  color: $white-color;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-data {
+    min-width: 120px;
+    position: relative;
+    width: 100%;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 0;
+      left: -15px;
+      top: 50%;
+      border-bottom: 1px solid $primary-color;
+    }
+    &_line-right {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 0;
+        right: -15px;
+        top: 50%;
+        border-top: 1px solid $primary-color;
+      }
+    }
+  }
+  &-no-data {
+    position: relative;
+    width: 100%;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0px;
+      height: 100%;
+      right: -15px;
+      top: 0;
+      border-left: 1px solid $primary-color;
+    }
+  }
+}
+
+.col-line {
+  width: 100%;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 0;
+    right: 0px;
+    top: 50%;
+    border-bottom: 1px solid $primary-color;
+  }
+}
