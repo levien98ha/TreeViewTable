@@ -70,11 +70,47 @@ const getCombinations = (parentObject: any, idx: number) => {
   }
 }
 
+const setLevelForTree = (data: any, key: string) => {
+  let parentLevel: any[] = []
+
+  data.map((parent: any) => {
+    const { key } = parent
+    if (!parentLevel.includes(key)) {
+      parentLevel.push(key)
+    }
+  })
+
+  let result = data.map((parent: any) => {
+    const { key } = parent
+    parent.level = parentLevel.indexOf(key)
+    return parent
+  })
+  return result
+}
+
+const getChildByParentId = (data: any, parentId: number | null, parentKey: string) => {
+  let result: any[] = [];
+  if (!data) return result;
+  data.forEach((child: any) => {
+    if (child[parentKey] === parentId) result.push(child)
+  })
+  return result
+}
+
+const getLeafNumber = (data: any, key: string, parentId: any) => {
+  if (!data) return 0
+  let result = 0
+  let rootItem = []
+
+}
+
 export {
   isHasChidren,
   getDepth,
   getChildNumber,
   getAllChildOfLastNode,
-  getCombinations
-  // flatArray
+  getCombinations,
+  getChildByParentId,
+  setLevelForTree,
+  getLeafNumber
 }

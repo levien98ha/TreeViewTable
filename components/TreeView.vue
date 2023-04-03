@@ -1,51 +1,5 @@
 <template>
   <div class="tree-table">
-    <!-- <div
-      v-for="(item, idx) in dataTree"
-      :key="item.label + idx"
-      class="tree-rows"
-    >
-      <div class="tree-row">
-        <TreeRow
-          :data-row="item"
-          :depth="depth"
-          :is-loop="false"
-          :has-check-box="hasCheckBox"
-        ></TreeRow>
-        <TreeRow
-          v-if="item.children.length > 0"
-          :data-row="item.children[0]"
-          :depth="depth - 1"
-          :has-check-box="hasCheckBox"
-          :is-first="true"
-        ></TreeRow>
-      </div>
-      <template v-if="item.children.length > 0">
-        <div
-          v-for="(child, index) in item.children"
-          :key="child.label + index"
-          class="tree-row"
-          :data-col="child.label"
-        >
-          <template v-if="index > 0">
-            <div class="flex flex-col">
-              <div
-                v-for="key in getChildOfNode(child)"
-                :key="key"
-                :class="['tree-col', 'col-no-data']"
-              ></div>
-            </div>
-          </template>
-          <TreeRow
-            v-if="index > 0 && child.label"
-            :data-row="child"
-            :depth="depth - 1"
-            :has-check-box="hasCheckBox"
-            :is-last="index === item.children.length - 1"
-          ></TreeRow>
-        </div>
-      </template>
-    </div> -->
     <div class="flex">
       <div
         v-for="(col, colIdx) in depth"
@@ -78,12 +32,23 @@
                 dataTable[rowIdx][colIdx].hasChildren
                   ? 'col-data_line-right'
                   : '',
+                colIdx > 0 &&
+                  rowIdx < dataTable.length - 2 &&
+                  dataTable[rowIdx + 1][colIdx - 1].index === 0 &&
+                  'col-data_last',
               ]"
               :data-index="dataTable[rowIdx][colIdx].index"
               :data-row-index="rowIdx"
               :data-col-index="colIdx"
             >
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                :class="[
+                  colIdx > 0 &&
+                    dataTable[rowIdx][colIdx].index > 0 &&
+                    'col-data_line-to-parent',
+                ]"
+              />
               <div :class="['col']">
                 {{ dataTable[rowIdx][colIdx].label }}
               </div>
@@ -93,7 +58,14 @@
             <div
               :class="[
                 'col col-no-data',
-                dataTable[0][colIdx].index === rowIdx ? '' : 'col-no-data',
+                rowIdx < dataTable.length - 1 &&
+                colIdx < depth - 2 &&
+                dataTable[rowIdx + 1][colIdx].index === 0 &&
+                dataTable[rowIdx + 1][colIdx + 1].index === 0 &&
+                dataTable[rowIdx][colIdx + 1].index > 0 &&
+                dataTable[rowIdx][colIdx + 1].hasChildren
+                  ? 'col-no-data_hide-line'
+                  : '',
               ]"
               :data-index="dataTable[rowIdx][colIdx].index"
               :data-row-index="rowIdx"

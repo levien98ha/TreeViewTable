@@ -104,10 +104,6 @@ $bg-even: #1a2733;
 //   justify-content: center;
 // }
 
-// .align-center {
-//   align-items: center;
-// }
-
 // .root-col:not(:nth-child(1)) {
 //   position: relative;
 //   &::before {
@@ -145,6 +141,10 @@ $bg-even: #1a2733;
   justify-content: flex-start;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .row {
   display: flex;
   padding: 0 15px;
@@ -153,9 +153,36 @@ $bg-even: #1a2733;
   position: relative;
   &:nth-child(even) {
     background-color: $bg-even;
+    .col-data {
+      &_last {
+        &::before {
+          border-left: 1px solid $bg-even;
+        }
+      }
+    }
+    .col-no-data_hide-line {
+      &::after {
+        border-left: 1px solid $bg-even;
+      }
+      &::before {
+        border-left: 1px solid $bg-odd;
+      }
+    }
   }
   &:nth-child(odd) {
     background-color: $bg-odd;
+    .col-data {
+      &_last {
+        &::before {
+          border-left: 1px solid $bg-odd;
+        }
+      }
+    }
+    .col-no-data_hide-line {
+      &::after {
+        border-left: 1px solid $bg-odd;
+      }
+    }
   }
 }
 
@@ -176,12 +203,14 @@ $bg-even: #1a2733;
       content: '';
       position: absolute;
       width: 15px;
-      height: 0;
-      left: -15px;
+      height: 50%;
+      left: -16px;
       top: 50%;
-      border-bottom: 1px solid $primary-color;
+      border-top: 1px solid $primary-color;
+      border-left: 1px solid $primary-color;
     }
     &_line-right {
+      position: relative;
       &::after {
         content: '';
         position: absolute;
@@ -192,6 +221,17 @@ $bg-even: #1a2733;
         border-top: 1px solid $primary-color;
       }
     }
+    // &_line-to-parent {
+    //   &::before {
+    //     content: '';
+    //     position: absolute;
+    //     width: 0px;
+    //     height: 50%;
+    //     left: -16px;
+    //     top: -50%;
+    //     border-right: 1px solid $primary-color;
+    //   }
+    // }
   }
   &-no-data {
     position: relative;
@@ -204,6 +244,24 @@ $bg-even: #1a2733;
       right: -15px;
       top: 0;
       border-left: 1px solid $primary-color;
+    }
+    &_hide-line {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0px;
+        height: 100%;
+        right: -15px;
+        top: 0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: 0px;
+        height: 50%;
+        right: -15px;
+        top: -50%;
+      }
     }
   }
 }

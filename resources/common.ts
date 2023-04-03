@@ -18,14 +18,15 @@ const treeViewData = [
         label: '中国',
         children: [
           { label: 'もみの木サンシャインパーク', children: [] },
-          { label: 'もみの木サンシャインパーク', children: [{ label: 'もみの木サンシャインパーク4', children: [] }] }
+          { label: 'もみの木サンシャインパーク', children: [{ label: 'もみの木サンシャインパーク4', children: [] }, { label: 'もみの木サンシャインパーク4', children: [] }] },
+          { label: 'もみの木サンシャインパーク', children: [{ label: 'もみの木サンシャインパーク4', children: [] }, { label: 'もみの木サンシャインパーク4', children: [] }] }
         ],
       },
       {
-        label: '中国1',
+        label: 'ベトナム',
         children: [
           { label: 'もみの木サンシャインパーク1', children: [] },
-          { label: 'もみの木サンシャインパーク1', children: [] }],
+          { label: 'もみの木サンシャインパーク1', children: [{ label: 'もみの木サンシャインパーク1', children: [] }] }],
       },
     ],
   },
@@ -42,15 +43,38 @@ const treeViewData = [
       },
       {
         label: '関西',
-        children: [{ label: '発電所B', children: [] }, { label: '発電所E', children: [] }],
+        children: [{ label: '発電所B', children: [] }, { label: '発電所E', children: [] }, { label: '発電所F', children: [] }],
       },
     ],
   },
 ]
 
-// const treeStructureData = [
-//   { id: 1, parentId: null, isDisabled: false, isChecked: true, name: '株式会社四電工' },
-//   { id: 2, parentId: null, isDisabled: false, isChecked: false, name: 'ニトリ株式会社' },
-// ]
+const treeStructureData = [
+  { id: 1, parentId: null, isDisabled: false, isChecked: false, name: '株式会社四電工' },
+  { id: 3, parentId: 1, isDisabled: false, isChecked: false, name: '四国' },
+  { id: 4, parentId: 1, isDisabled: false, isChecked: false, name: '中国' },
+  { id: 5, parentId: 1, isDisabled: false, isChecked: false, name: 'ベトナム' },
+  { id: 6, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク久礼' },
+  { id: 7, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク佐川' },
+  { id: 8, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク加茂' },
+  { id: 9, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク北条' },
+  { id: 10, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク大屋冨' },
+  { id: 11, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク箸蔵' },
+  { id: 12, parentId: 3, isDisabled: false, isChecked: false, name: 'サンシャインパーク豊浜' },
+  { id: 13, parentId: 4, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク' },
+  { id: 14, parentId: 4, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク' },
+  { id: 15, parentId: 14, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク' },
+  { id: 25, parentId: 14, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク' },
+  { id: 16, parentId: 5, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク1' },
+  { id: 17, parentId: 5, isDisabled: false, isChecked: false, name: 'もみの木サンシャインパーク1' },
+  { id: 2, parentId: null, isDisabled: false, isChecked: false, name: 'ニトリ株式会社' },
+  { id: 18, parentId: 2, isDisabled: false, isChecked: false, name: '東京' },
+  { id: 19, parentId: 2, isDisabled: false, isChecked: false, name: '関西' },
+  { id: 20, parentId: 18, isDisabled: false, isChecked: false, name: '発電所A' },
+  { id: 21, parentId: 18, isDisabled: false, isChecked: false, name: '発電所B' },
+  { id: 22, parentId: 18, isDisabled: false, isChecked: false, name: '発電所C' },
+  { id: 23, parentId: 19, isDisabled: false, isChecked: false, name: '発電所B' },
+  { id: 24, parentId: 19, isDisabled: false, isChecked: false, name: '発電所E' },
+]
 
-export default { treeViewData };
+export default { treeViewData, treeStructureData };
