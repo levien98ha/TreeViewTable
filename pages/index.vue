@@ -5,7 +5,7 @@
     <TreeViewContainer
       :data-tree="treeViewData"
       :has-check-box="true"
-      :rootId="null"
+      :root-id="null"
     />
   </div>
 </template>
@@ -14,6 +14,7 @@
 import Vue from 'vue'
 import data from '~/resources/common'
 import TreeViewContainer from '~/components/TreeViewTable/TreeViewContainer.vue'
+import { getLeavesOfNode } from '~/ultils/common'
 
 export default Vue.extend({
   name: 'IndexPage',
@@ -24,6 +25,9 @@ export default Vue.extend({
     treeData: data.treeViewData,
     treeViewData: data.treeStructureData,
   }),
+  mounted() {
+    console.log(getLeavesOfNode(this.treeData, 1))
+  },
 })
 </script>
 <style lang="scss">

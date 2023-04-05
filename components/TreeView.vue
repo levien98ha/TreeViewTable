@@ -4,15 +4,23 @@
       <div
         v-for="(col, colIdx) in depth"
         :key="col + '' + colIdx"
-        class="col-container"
+        class="tree-col-container"
       >
+        <div class="tree-header">
+          <div class="flex justify-between align-center">
+            <input type="checkbox" class="tree-checkbox" />
+            <div class="tree-ic-sort">
+              <img :src="src" @click="handleSort(colIdx)" />
+            </div>
+          </div>
+        </div>
         <div
           v-for="(row, rowIdx) in dataTable"
           :key="row.label + rowIdx"
-          :class="['row']"
+          :class="['tree-row']"
         >
           <template v-if="colIdx === depth - 1 && row.length < depth">
-            <div :class="['col col-no-data']"></div>
+            <div :class="['tree-col']"></div>
           </template>
           <template
             v-else-if="
@@ -28,14 +36,11 @@
                 'flex justify-start',
                 colIdx === 0 && dataTable[rowIdx][colIdx].index === 0
                   ? 'hide-line'
-                  : 'col-data',
-                dataTable[rowIdx][colIdx].hasChildren
-                  ? 'col-data_line-right'
-                  : '',
+                  : 'tree-col-data',
                 colIdx > 0 &&
                   rowIdx < dataTable.length - 2 &&
                   dataTable[rowIdx + 1][colIdx - 1].index === 0 &&
-                  'col-data_last',
+                  'tree-col-data_last',
               ]"
               :data-index="dataTable[rowIdx][colIdx].index"
               :data-row-index="rowIdx"
@@ -44,27 +49,35 @@
               <input
                 type="checkbox"
                 :class="[
+                  'tree-checkbox',
                   colIdx > 0 &&
                     dataTable[rowIdx][colIdx].index > 0 &&
-                    'col-data_line-to-parent',
+                    'tree-col-data_line-to-parent',
                 ]"
               />
-              <div :class="['col']">
+              <div :class="['tree-col']">
                 {{ dataTable[rowIdx][colIdx].label }}
               </div>
+              <span
+                :class="
+                  dataTable[rowIdx][colIdx].hasChildren
+                    ? 'tree-col-data_line-right'
+                    : ''
+                "
+              ></span>
             </div>
           </template>
           <template v-else>
             <div
               :class="[
-                'col col-no-data',
+                'tree-col tree-col-no-data',
                 rowIdx < dataTable.length - 1 &&
                 colIdx < depth - 2 &&
                 dataTable[rowIdx + 1][colIdx].index === 0 &&
                 dataTable[rowIdx + 1][colIdx + 1].index === 0 &&
                 dataTable[rowIdx][colIdx + 1].index > 0 &&
                 dataTable[rowIdx][colIdx + 1].hasChildren
-                  ? 'col-no-data_hide-line'
+                  ? 'tree-col-no-data_hide-line'
                   : '',
               ]"
               :data-index="dataTable[rowIdx][colIdx].index"
@@ -105,19 +118,10 @@ export default {
       this.depth = Math.max(...this.dataTree.map((item) => getDepth(item)))
     }
     this.dataTable = getCombinations({ children: [...this.dataTree] }, 0)
-    this.dataTableClone = JSON.parse(JSON.stringify(this.dataTable))
     console.log('🚀 ~ beforeMount ~ this.dataTable:', this.dataTable)
   },
   methods: {
-    // filterData(colIdx, value) {
-    //   const result = []
-    //   this.dataTable.map((item) => {
-    //     if (item.length > colIdx && item[colIdx].label === value) {
-    //       result.push(item)
-    //     }
-    //   })
-    //   return result
-    // },
+    handleSort(depth) {},
   },
 }
 </script>

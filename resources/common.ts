@@ -1,49 +1,56 @@
 const treeViewData = [
   {
+    id: 1,
     label: '株式会社四電工',
     children: [
       {
+        id: 2,
         label: '四国',
         children: [
-          { label: 'サンシャインパーク久礼', children: [] },
-          { label: 'サンシャインパーク佐川', children: [] },
-          { label: 'サンシャインパーク加茂', children: [] },
-          { label: 'サンシャインパーク北条', children: [] },
-          { label: 'サンシャインパーク大屋冨', children: [] },
-          { label: 'サンシャインパーク箸蔵', children: [] },
-          { label: 'サンシャインパーク豊浜', children: [] },
+          { id: 3, label: 'サンシャインパーク久礼', children: [] },
+          { id: 4, label: 'サンシャインパーク佐川', children: [] },
+          { id: 5, label: 'サンシャインパーク加茂', children: [] },
+          { id: 6, label: 'サンシャインパーク北条', children: [] },
+          { id: 7, label: 'サンシャインパーク大屋冨', children: [] },
+          { id: 8, label: 'サンシャインパーク箸蔵', children: [] },
+          { id: 9, label: 'サンシャインパーク豊浜', children: [] },
         ],
       },
       {
         label: '中国',
+        id: 10,
         children: [
-          { label: 'もみの木サンシャインパーク', children: [] },
-          { label: 'もみの木サンシャインパーク', children: [{ label: 'もみの木サンシャインパーク4', children: [] }, { label: 'もみの木サンシャインパーク4', children: [] }] },
-          { label: 'もみの木サンシャインパーク', children: [{ label: 'もみの木サンシャインパーク4', children: [] }, { label: 'もみの木サンシャインパーク4', children: [] }] }
+          { id: 11, label: 'もみの木サンシャインパーク', children: [] },
+          { id: 12, label: 'もみの木サンシャインパーク', children: [{ id: 13, label: 'もみの木サンシャインパーク4', children: [] }, { id: 14, label: 'もみの木サンシャインパーク4', children: [] }] },
+          { id: 15, label: 'もみの木サンシャインパーク', children: [{ id: 16, label: 'もみの木サンシャインパーク4', children: [] }, { id: 17, label: 'もみの木サンシャインパーク4', children: [] }] }
         ],
       },
       {
+        id: 18,
         label: 'ベトナム',
         children: [
-          { label: 'もみの木サンシャインパーク1', children: [] },
-          { label: 'もみの木サンシャインパーク1', children: [{ label: 'もみの木サンシャインパーク1', children: [] }] }],
+          { id: 19, label: 'もみの木サンシャインパーク1', children: [] },
+          { id: 20, label: 'もみの木サンシャインパーク1', children: [{ id: 21, label: 'もみの木サンシャインパーク1', children: [] }] }],
       },
     ],
   },
   {
+    id: 22,
     label: 'ニトリ株式会社',
     children: [
       {
+        id: 23,
         label: '東京',
         children: [
-          { label: '発電所A', children: [] },
-          { label: '発電所B', children: [] },
-          { label: '発電所C', children: [] },
+          { id: 24, label: '発電所A', children: [] },
+          { id: 25, label: '発電所B', children: [] },
+          { id: 26, label: '発電所C', children: [{ id: 31, label: '発電所G', children: [] }, { id: 32, label: '発電所H', children: [] }] },
         ],
       },
       {
+        id: 27,
         label: '関西',
-        children: [{ label: '発電所B', children: [] }, { label: '発電所E', children: [] }, { label: '発電所F', children: [] }],
+        children: [{ id: 28, label: '発電所B', children: [] }, { id: 29, label: '発電所E', children: [] }, { id: 30, label: '発電所F', children: [] }],
       },
     ],
   },

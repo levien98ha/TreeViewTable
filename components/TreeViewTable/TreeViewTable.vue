@@ -1,8 +1,8 @@
 <template>
   <div class="tree-view-table">
-    <div v-for="item in dataTable" :key="item.id" class="tree-rows">
-      <div :class="['tree-row', !rootId ? 'tree-row_root' : '']">
-        <div class="tree-col">
+    <div v-for="item in dataTable" :key="item.id" class="tree-v2-rows">
+      <div :class="['tree-v2-row', !rootId ? 'tree-v2-row_root' : '']">
+        <div class="tree-v2-col">
           <div class="flex justify-start align-center">
             <input type="checkbox" />
             {{ item.name }}
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { getChildByParentId, getLeafNumber } from '~/ultils/common'
+import { getChildByParentId } from '~/ultils/common'
 
 export default {
   name: 'TreeViewTable',
@@ -52,15 +52,13 @@ export default {
       this.rootId,
       this.parentKey
     )
-    this.leafNumber = getLeafNumber(this.dataTree, this.parentKey, null)
-    console.log('🚀 ~ beforeMount ~ this.leafNumber:', this.leafNumber)
   },
   methods: {},
 }
 </script>
 
 <style lang="scss">
-.tree {
+.tree-v2 {
   &-row {
     height: 100%;
     display: table-row;

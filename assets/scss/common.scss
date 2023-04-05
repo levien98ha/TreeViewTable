@@ -1,133 +1,11 @@
 $primary-color: #2e455c;
 $white-color: #ffffff;
+$black-color: #000000;
 
 $bg-odd: #172129;
 $bg-even: #1a2733;
 
-// .tree-row {
-//   display: flex;
-// }
-
-// .tree-col {
-//   background-color: $bg-even;
-// }
-
-// .root-col:nth-child(odd) .tree-col:nth-child(odd) {
-//   background-color: $bg-odd;
-// }
-
-// .root-col:not(:nth-child(1)) > .tree-row:nth-child(odd) .tree-col {
-//   background-color: $bg-odd;
-// }
-
-// .tree-col {
-//   min-width: 200px;
-//   padding: 8px 10px;
-//   text-align: center;
-//   height: 35px;
-//   position: relative;
-//   box-sizing: border-box;
-//   color: $white-color;
-// }
-
-// .col-no-data {
-//   // &::before {
-//   //   content: '';
-//   //   border-right: 1px solid $primary-color;
-//   //   position: absolute;
-//   //   height: 100%;
-//   //   width: 1px;
-//   //   right: 0;
-//   //   top: 0;
-//   // }
-//   // &_last {
-//   //   content: '';
-//   //   border-right: 1px solid $white-color;
-//   //   position: absolute;
-//   //   height: 50%;
-//   //   width: 1px;
-//   //   right: 0;
-//   //   top: 50%;
-//   // }
-// }
-
-// .line-node {
-//   &::before {
-//     content: '';
-//     border-top: 1px solid $primary-color;
-//     position: absolute;
-//     height: 0px;
-//     width: 10px;
-//     left: 0px;
-//   }
-// }
-
-// .col-data {
-//   &-first {
-//     // &::before {
-//     //   content: '';
-//     //   border-bottom: 1px solid $primary-color;
-//     //   position: absolute;
-//     //   height: 0px;
-//     //   width: 10px;
-//     //   left: -10px;
-//     //   top: 50%;
-//     // }
-//     // &::after {
-//     //   content: '';
-//     //   border-right: 1px solid $primary-color;
-//     //   position: absolute;
-//     //   height: 100%;
-//     //   width: 0px;
-//     //   top: 50%;
-//     //   left: -1px;
-//     // }
-//   }
-//   &-last {
-//     // &::before {
-//     //   content: '';
-//     //   border-right: 1px solid $white-color;
-//     //   position: absolute;
-//     //   height: 100%;
-//     //   width: 0px;
-//     //   top: 50%;
-//     //   left: -1px;
-//     // }
-//   }
-// }
-
-// .flex-col {
-//   flex-direction: column;
-// }
-
-// .justify-center {
-//   justify-content: center;
-// }
-
-// .root-col:not(:nth-child(1)) {
-//   position: relative;
-//   &::before {
-//     content: '';
-//     border-right: 1px solid $primary-color;
-//     position: absolute;
-//     height: calc(100% - 34.5px);
-//     width: 0px;
-//     top: 17.5px;
-//     left: -1px;
-//   }
-//   .tree-col {
-//     .line-node {
-//       &::before {
-//         content: '';
-//         border-top: 1px solid $primary-color;
-//         position: absolute;
-//         height: 0px;
-//         width: 20px;
-//         left: -10px;
-//       }
-//     }
-//   }
-// }
+$row-height: 34px;
 
 .tree-table {
   overflow: auto;
@@ -135,6 +13,8 @@ $bg-even: #1a2733;
 
 .flex {
   display: flex;
+  flex: 1 1 auto;
+  max-width: 100%;
 }
 
 .justify-start {
@@ -145,22 +25,39 @@ $bg-even: #1a2733;
   align-items: center;
 }
 
-.row {
+.tree-col-container:last-child {
+  flex: 1 1 auto;
+}
+
+.tree-header {
+  background-color: $black-color;
+  height: $row-height;
+  display: flex;
+  padding: 0 15px;
+  .tree-ic-sort {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.tree-row {
   display: flex;
   padding: 0 15px;
   height: 35px;
+  line-height: 35px;
   box-sizing: border-box;
   position: relative;
   &:nth-child(even) {
     background-color: $bg-even;
-    .col-data {
+    .tree-col-data {
       &_last {
         &::before {
           border-left: 1px solid $bg-even;
         }
       }
     }
-    .col-no-data_hide-line {
+    .tree-col-no-data_hide-line {
       &::after {
         border-left: 1px solid $bg-even;
       }
@@ -171,14 +68,14 @@ $bg-even: #1a2733;
   }
   &:nth-child(odd) {
     background-color: $bg-odd;
-    .col-data {
+    .tree-col-data {
       &_last {
         &::before {
           border-left: 1px solid $bg-odd;
         }
       }
     }
-    .col-no-data_hide-line {
+    .tree-col-no-data_hide-line {
       &::after {
         border-left: 1px solid $bg-odd;
       }
@@ -186,7 +83,7 @@ $bg-even: #1a2733;
   }
 }
 
-.col {
+.tree-col {
   width: fit-content;
   height: 35px;
   box-sizing: border-box;
@@ -211,27 +108,18 @@ $bg-even: #1a2733;
     }
     &_line-right {
       position: relative;
+      flex: 1 1 auto;
       &::after {
         content: '';
         position: absolute;
-        width: 15px;
+        width: 100%;
+        min-width: 15px;
         height: 0;
         right: -15px;
         top: 50%;
         border-top: 1px solid $primary-color;
       }
     }
-    // &_line-to-parent {
-    //   &::before {
-    //     content: '';
-    //     position: absolute;
-    //     width: 0px;
-    //     height: 50%;
-    //     left: -16px;
-    //     top: -50%;
-    //     border-right: 1px solid $primary-color;
-    //   }
-    // }
   }
   &-no-data {
     position: relative;
@@ -266,7 +154,7 @@ $bg-even: #1a2733;
   }
 }
 
-.col-line {
+.tree-col-line {
   width: 100%;
   position: relative;
   &::after {
@@ -278,4 +166,8 @@ $bg-even: #1a2733;
     top: 50%;
     border-bottom: 1px solid $primary-color;
   }
+}
+
+.tree-checkbox {
+  margin: 0 10px;
 }
